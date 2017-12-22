@@ -1,0 +1,44 @@
+<div ng-controller="submit-n-number">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="well well-sm">
+                <form name="wordForm" novalidate ng-submit="wordForm.$valid &&getwords()">
+                    <div class="form-group">
+                        <label for="Number">Enter Number</label>
+                        <input type="text" class="form-control" name="numbervalidate" ng-model="number.no" placeholder="Enter Number" ng-pattern="/^[0-9]*$/" required>
+                        <span style="color:Red" ng-show="wordForm.numbervalidate.$error.required"> Required! </span>
+                        <span style="color:Red" ng-show="wordForm.numbervalidate.$dirty&&wordForm.numbervalidate.$error.pattern">Only Numbers Allowed</span>
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div ng-show="myValue">
+        <h2>List of words </h2>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well well-sm">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Word Name</th>
+                                    <th>Word Count</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr dir-paginate="item in topnwords | itemsPerPage: pageSize" current-page="currentPage">
+                                    <td>[[item.name]]</td>
+                                    <td>[[item.total]]</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <dir-pagination-controls boundary-links="true" template-url="templates/dirPagination.html"></dir-pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
