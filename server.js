@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 nunjucks.configure('views', {
 	autoescape: true,
@@ -28,6 +28,6 @@ app.set('view options', {
 
 require('./routes')(app);
 
-app.listen(port, () => {
+app.listen(port,"0.0.0.0", () => {
 	console.log('We are live on ' + port);
 });
